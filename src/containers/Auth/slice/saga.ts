@@ -1,8 +1,8 @@
 // import { take, call, put, select, takeLatest } from 'redux-saga/effects';
-// import { {{ camelCase parent }}Actions as actions } from '.';
+// import { authActions as actions } from '.';
 
 // function* doSomething() {}
 
-export function* {{ camelCase parent }}Saga() {
+export function* authSaga() {
   // yield takeLatest(actions.someAction.type, doSomething);
 }

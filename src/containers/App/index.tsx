@@ -21,6 +21,7 @@ import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { makeTheme } from 'styles/theme/mui-theme';
 import { CssBaseline } from '@mui/material';
 import { selectTheme } from 'styles/theme/slice/selectors';
+import { Auth } from 'containers/Auth';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -40,6 +41,7 @@ export function App() {
           </Helmet>
 
           <Routes>
+            <Route path="/" element={<Auth />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <GlobalStyle />

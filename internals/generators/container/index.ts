@@ -19,25 +19,20 @@ export enum ComponentProptNames {
 
 type Answers = { [P in ComponentProptNames]: string };
 
-export const componentGenerator: PlopGeneratorConfig = {
-  description: 'Add a component',
+export const containerGenerator: PlopGeneratorConfig = {
+  description: 'Add a container',
   prompts: [
     {
       type: 'input',
       name: ComponentProptNames.componentName,
       message: 'What should it be called?',
     },
-    {
-      type: 'input',
-      name: ComponentProptNames.parent,
-      message: 'What is the parent component?',
-    },
   ],
   actions: data => {
     const answers = data as Answers;
 
-    const componentPath = `${baseGeneratorPath}/containers/${answers.parent}/{{properCase ${ComponentProptNames.componentName}}}`;
-    const actualComponentPath = `${baseGeneratorPath}/containers/${answers.parent}/${answers.componentName}`;
+    const componentPath = `${baseGeneratorPath}/containers/{{properCase ${ComponentProptNames.componentName}}}`;
+    const actualComponentPath = `${baseGeneratorPath}/containers/${answers.componentName}`;
 
     if (pathExists(actualComponentPath)) {
       throw new Error(`Component '${answers.componentName}' already exists`);
@@ -46,19 +41,19 @@ export const componentGenerator: PlopGeneratorConfig = {
       {
         type: 'add',
         path: `${componentPath}/index.tsx`,
-        templateFile: './component/index.tsx.hbs',
+        templateFile: './container/index.tsx.hbs',
         abortOnFail: true,
       },
       {
         type: 'add',
-        path: `${componentPath}/Wrapper.tsx`,
-        templateFile: './component/Wrapper.tsx.hbs',
+        path: `${componentPath}/Container.tsx`,
+        templateFile: './container/Container.tsx.hbs',
         abortOnFail: true,
       },
       {
         type: 'add',
         path: `${componentPath}/components.ts`,
-        templateFile: './component/components.ts.hbs',
+        templateFile: './container/components.ts.hbs',
         abortOnFail: true,
       },
     ];
@@ -66,7 +61,7 @@ export const componentGenerator: PlopGeneratorConfig = {
     actions.push({
       type: 'add',
       path: `${componentPath}/__tests__/index.test.tsx`,
-      templateFile: './component/index.test.tsx.hbs',
+      templateFile: './container/index.test.tsx.hbs',
       abortOnFail: true,
     });
 

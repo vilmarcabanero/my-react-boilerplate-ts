@@ -1,30 +1,24 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
-{{#if wantSaga}}
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { {{ camelCase parent }}Saga } from './saga';
-{{else}}
-import { useInjectReducer } from 'utils/redux-injectors';
-{{/if}}
-import { {{ properCase parent }}State } from './types';
+import { authSaga } from './saga';
+import { AuthState } from './types';
 
-export const initialState: {{ properCase parent }}State = {};
+export const initialState: AuthState = {};
 
 const slice = createSlice({
-  name: '{{ camelCase parent }}',
+  name: 'auth',
   initialState,
   reducers: {
     someAction(state, action: PayloadAction<any>) {},
   },
 });
 
-export const { actions: {{ camelCase parent }}Actions } = slice;
+export const { actions: authActions } = slice;
 
-export const use{{ properCase parent }}Slice = () => {
+export const useAuthSlice = () => {
   useInjectReducer({ key: slice.name, reducer: slice.reducer });
-  {{#if wantSaga}}
-  useInjectSaga({ key: slice.name, saga: {{ camelCase parent }}Saga });
-  {{/if}}
+  useInjectSaga({ key: slice.name, saga: authSaga });
   return { actions: slice.actions };
 };
 
@@ -32,7 +26,7 @@ export const use{{ properCase parent }}Slice = () => {
  * Example Usage:
  *
  * export function MyComponentNeedingThisSlice() {
- *  const { actions } = use{{ properCase parent }}Slice();
+ *  const { actions } = useAuthSlice();
  *
  *  const onButtonClick = (evt) => {
  *    dispatch(actions.someAction());

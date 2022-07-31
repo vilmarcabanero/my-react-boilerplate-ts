@@ -1,7 +1,7 @@
 // import { orange } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 
-export function makeTheme(mode: boolean) {
+export function makeTheme(mode: boolean): Theme {
   return createTheme({
     palette: {
       primary: {
