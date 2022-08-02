@@ -1,7 +1,8 @@
+import React from 'react';
 import styled from '@emotion/styled';
 
 interface Props {
-  children: JSX.Element[] | JSX.Element;
+  children: React.ReactNode;
 }
 
 export function Wrapper(props: Props) {

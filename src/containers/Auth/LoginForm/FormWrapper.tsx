@@ -1,12 +1,9 @@
-/**
- * FormWrapper
- */
-
+import React from 'react';
 import styled from '@emotion/styled';
 import * as Material from '@mui/material';
 
 interface Props {
-  children: JSX.Element[] | JSX.Element;
+  children: React.ReactNode;
 }
 
 export function FormWrapper(props: Props) {
