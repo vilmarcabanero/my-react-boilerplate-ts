@@ -14,7 +14,7 @@ inquirer.registerPrompt('directory', require('inquirer-directory'));
 export enum SliceProptNames {
   'sliceName' = 'sliceName',
   'path' = 'path',
-  'wantSaga' = 'wantSaga',
+  'parent' = 'parent',
 }
 
 type Answers = { [P in SliceProptNames]: string };
@@ -29,29 +29,19 @@ export const sliceGenerator: PlopGeneratorConfig = {
   prompts: [
     {
       type: 'input',
-      name: SliceProptNames.sliceName,
-      message: 'What should it be called (automatically adds ...Slice postfix)',
-    },
-    {
-      type: 'directory',
-      name: SliceProptNames.path,
-      message: 'Where do you want it to be created?',
-      basePath: `${baseGeneratorPath}`,
-    } as any,
-    {
-      type: 'confirm',
-      name: SliceProptNames.wantSaga,
-      default: true,
-      message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+      name: SliceProptNames.parent,
+      message: 'What container do you want to put the slice in?',
     },
   ],
   actions: data => {
     const answers = data as Answers;
 
-    const slicePath = `${baseGeneratorPath}/${answers.path}/slice`;
+    const slicePath = `${baseGeneratorPath}/containers/${answers.parent}/slice`;
+    const sagaPath = `${baseGeneratorPath}/containers/${answers.parent}/saga`;
+    const prettifyPath = `${baseGeneratorPath}/containers/${answers.parent}`;
 
     if (pathExists(slicePath)) {
-      throw new Error(`Slice '${answers.sliceName}' already exists`);
+      throw new Error(`Slice '${answers.parent}' already exists`);
     }
     const actions: Actions = [];
 
@@ -87,18 +77,22 @@ export const sliceGenerator: PlopGeneratorConfig = {
       templateFile: './slice/appendRootState.hbs',
       abortOnFail: true,
     });
-    if (answers.wantSaga) {
-      actions.push({
-        type: 'add',
-        path: `${slicePath}/saga.ts`,
-        templateFile: './slice/saga.ts.hbs',
-        abortOnFail: true,
-      });
-    }
+    actions.push({
+      type: 'add',
+      path: `${sagaPath}/_index.ts`,
+      templateFile: './slice/saga.index.ts.hbs',
+      abortOnFail: true,
+    });
+    actions.push({
+      type: 'add',
+      path: `${sagaPath}/someAction.ts`,
+      templateFile: './slice/saga.someAction.ts.hbs',
+      abortOnFail: true,
+    });
 
     actions.push({
       type: 'prettify',
-      data: { path: `${slicePath}/**` },
+      data: { path: `${prettifyPath}/**` },
     });
 
     return actions;

@@ -1,0 +1,17 @@
+import React from 'react';
+import styled from '@emotion/styled';
+import * as Material from '@mui/material';
+
+interface Props {
+  children: React.ReactNode;
+}
+
+export function Wrapper(props: Props) {
+  return (
+    <StyledWrapper>
+      {props.children}
+    </StyledWrapper>
+  );
+}
+
+const StyledWrapper = styled(Material.Paper)``;

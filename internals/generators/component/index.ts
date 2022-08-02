@@ -13,11 +13,8 @@ inquirer.registerPrompt('directory', require('inquirer-directory'));
 export enum ComponentProptNames {
   componentName = 'componentName',
   path = 'path',
-  wantMemo = 'wantMemo',
-  wantStyledComponents = 'wantStyledComponents',
-  wantTranslations = 'wantTranslations',
-  wantLoadable = 'wantLoadable',
   wantTests = 'wantTests',
+  parent = 'parent',
 }
 
 type Answers = { [P in ComponentProptNames]: string };
@@ -31,48 +28,16 @@ export const componentGenerator: PlopGeneratorConfig = {
       message: 'What should it be called?',
     },
     {
-      type: 'directory',
-      name: ComponentProptNames.path,
-      message: 'Where do you want it to be created?',
-      basePath: `${baseGeneratorPath}`,
-    } as any,
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantMemo,
-      default: false,
-      message: 'Do you want to wrap your component in React.memo?',
-    },
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantStyledComponents,
-      default: true,
-      message: 'Do you want to use styled-components?',
-    },
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantTranslations,
-      default: false,
-      message:
-        'Do you want i18n translations (i.e. will this component use text)?',
-    },
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantLoadable,
-      default: false,
-      message: 'Do you want to load the component asynchronously?',
-    },
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantTests,
-      default: false,
-      message: 'Do you want to have tests?',
+      type: 'input',
+      name: ComponentProptNames.parent,
+      message: 'What is the parent component?',
     },
   ],
   actions: data => {
     const answers = data as Answers;
 
-    const componentPath = `${baseGeneratorPath}/${answers.path}/{{properCase ${ComponentProptNames.componentName}}}`;
-    const actualComponentPath = `${baseGeneratorPath}/${answers.path}/${answers.componentName}`;
+    const componentPath = `${baseGeneratorPath}/containers/${answers.parent}/{{properCase ${ComponentProptNames.componentName}}}`;
+    const actualComponentPath = `${baseGeneratorPath}/containers/${answers.parent}/${answers.componentName}`;
 
     if (pathExists(actualComponentPath)) {
       throw new Error(`Component '${answers.componentName}' already exists`);
@@ -80,38 +45,30 @@ export const componentGenerator: PlopGeneratorConfig = {
     const actions: Actions = [
       {
         type: 'add',
-        path: `${componentPath}/index.tsx`,
+        path: `${componentPath}/_index.tsx`,
         templateFile: './component/index.tsx.hbs',
+        abortOnFail: true,
+      },
+      {
+        type: 'add',
+        path: `${componentPath}/Wrapper.tsx`,
+        templateFile: './component/Wrapper.tsx.hbs',
+        abortOnFail: true,
+      },
+      {
+        type: 'add',
+        path: `${componentPath}/components.ts`,
+        templateFile: './component/components.ts.hbs',
         abortOnFail: true,
       },
     ];
 
-    if (answers.wantLoadable) {
-      actions.push({
-        type: 'add',
-        path: `${componentPath}/Loadable.ts`,
-        templateFile: './component/loadable.ts.hbs',
-        abortOnFail: true,
-      });
-    }
-
-    if (answers.wantTests) {
-      actions.push({
-        type: 'add',
-        path: `${componentPath}/__tests__/index.test.tsx`,
-        templateFile: './component/index.test.tsx.hbs',
-        abortOnFail: true,
-      });
-    }
-
-    if (answers.wantTranslations) {
-      actions.push({
-        type: 'add',
-        path: `${componentPath}/messages.ts`,
-        templateFile: './component/messages.ts.hbs',
-        abortOnFail: true,
-      });
-    }
+    actions.push({
+      type: 'add',
+      path: `${componentPath}/__tests__/index.test.tsx`,
+      templateFile: './component/index.test.tsx.hbs',
+      abortOnFail: true,
+    });
 
     actions.push({
       type: 'prettify',

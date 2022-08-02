@@ -16,11 +16,11 @@ import { Provider } from 'react-redux';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import { App } from 'containers/App';
+import { App } from 'containers/App/index';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { configureAppStore } from 'store/configureStore';
+import { configureAppStore } from 'utils/store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 

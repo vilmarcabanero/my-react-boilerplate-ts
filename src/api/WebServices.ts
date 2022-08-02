@@ -13,66 +13,6 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       path: '/auth/register',
       method: 'post',
     },
-    forgotPassword: {
-      path: '/auth/forgotpassword',
-      method: 'post',
-    },
-    logout: {
-      path: '/login/logout',
-      method: 'post',
-      cache: null,
-    },
-    getUser: {
-      path: '/auth/user',
-      method: 'getNoParam',
-    },
-    getUserByUsername: {
-      path: '/auth/user',
-      method: 'get',
-    },
-    getAllUsers: {
-      path: '/auth/user/all',
-      method: 'getNoParam',
-    },
-    getAllPosts: {
-      path: '/posts',
-      method: 'getNoParam',
-    },
-    getAllComments: {
-      path: '/comments',
-      method: 'getNoParam',
-    },
-    createComment: {
-      path: '/comments',
-      method: 'post',
-    },
-    createPost: {
-      path: '/posts',
-      method: 'post',
-    },
-    likePost: {
-      path: '/posts/like',
-      method: 'patch',
-    },
-    updatePost: {
-      path: '/posts',
-      method: 'patch',
-    },
-    deletePost: {
-      path: '/posts',
-      method: 'delete',
-    },
-    hidePost: {
-      path: '/posts/hide',
-      method: 'patch',
-    },
-    uploadProfilePicture: {
-      method: 'post',
-    },
-    updateProfilePicture: {
-      path: '/auth/user/profile-picture',
-      method: 'patchNoParam',
-    },
   };
   const call = (type: any, params: any = {}, customPath = null) => {
     const { method, path, headers } = mapping[type];
