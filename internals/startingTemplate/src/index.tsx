@@ -16,7 +16,7 @@ import { Provider } from 'react-redux';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import { App } from 'containers/App/_index';
+import { App } from 'containers/App/index';
 
 import { HelmetProvider } from 'react-helmet-async';
 

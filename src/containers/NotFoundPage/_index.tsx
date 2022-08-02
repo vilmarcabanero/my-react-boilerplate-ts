@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { P } from './P';
-import { Link } from 'components/Link';
+import { Link } from './Link';
 import { NavBar } from 'components/NavBar';
 import { Helmet } from 'react-helmet-async';
 import { StyleConstants } from 'styles/StyleConstants';
