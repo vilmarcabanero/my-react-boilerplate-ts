@@ -79,7 +79,7 @@ export const sliceGenerator: PlopGeneratorConfig = {
     });
     actions.push({
       type: 'add',
-      path: `${sagaPath}/index.ts`,
+      path: `${sagaPath}/_index.ts`,
       templateFile: './slice/saga.index.ts.hbs',
       abortOnFail: true,
     });

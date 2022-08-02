@@ -40,7 +40,7 @@ export const containerGenerator: PlopGeneratorConfig = {
     const actions: Actions = [
       {
         type: 'add',
-        path: `${componentPath}/index.tsx`,
+        path: `${componentPath}/_index.tsx`,
         templateFile: './container/index.tsx.hbs',
         abortOnFail: true,
       },

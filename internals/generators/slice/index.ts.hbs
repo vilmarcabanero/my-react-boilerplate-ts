@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
-import { {{ camelCase parent }}Saga } from '../saga';
+import { {{ camelCase parent }}Saga } from '../saga/_index';
 import { {{ properCase parent }}State } from './types';
 
 export const initialState: {{ properCase parent }}State = {};
@@ -11,6 +11,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     someAction(state, action: PayloadAction<any>) {},
+    // [INSERT NEW ACTION KEY ABOVE] <
   },
 });
 

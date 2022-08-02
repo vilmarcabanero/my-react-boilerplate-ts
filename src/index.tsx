@@ -16,11 +16,11 @@ import FontFaceObserver from 'fontfaceobserver';
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 
-import { App } from 'containers/App';
+import { App } from 'containers/App/_index';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { configureAppStore } from 'store/configureStore';
+import { configureAppStore } from 'utils/store/configureStore';
 
 import { ThemeProvider } from 'styles/theme/ThemeProvider';
 

@@ -5,4 +5,4 @@ export * from './Form';
 export * from './EmailInput';
 export * from './FormWrapper';
 export * from './PasswordInput';
-// [EXPORT NEW COMPONENT ABOVE] < Needed for generating containers seamlessly
+// [EXPORT NEW COMPONENT ABOVE] <

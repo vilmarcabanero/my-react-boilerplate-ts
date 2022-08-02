@@ -1,6 +1,6 @@
 import { ThemeState } from 'styles/theme/slice/types';
 import { AuthState } from 'containers/Auth/slice/types';
-// [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
+// [IMPORT NEW CONTAINERSTATE ABOVE] <
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code
@@ -11,5 +11,5 @@ import { AuthState } from 'containers/Auth/slice/types';
 export interface RootState {
   theme?: ThemeState;
   auth?: AuthState;
-  // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
+  // [INSERT NEW REDUCER KEY ABOVE] <
 }

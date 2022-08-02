@@ -1,8 +1,8 @@
 import { takeLatest } from 'redux-saga/effects';
 import { {{ camelCase parent }}Actions as actions } from '../slice';
-import { someAction } from './someAction';
+import * as Action from './someAction';
 
 export function* {{ camelCase parent }}Saga() {
-  yield takeLatest(actions.someAction.type, someAction);
-  // [INSERT NEW ABOVE] < Needed for generating containers seamlessly
+  yield takeLatest(actions.someAction.type, Action.someAction);
+  // [EXPORT NEW SAGA ABOVE] <
 }
