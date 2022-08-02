@@ -12,7 +12,8 @@ inquirer.registerPrompt('directory', require('inquirer-directory'));
 
 export enum ComponentProptNames {
   componentName = 'componentName',
-  path = 'path',
+  parent = 'parent',
+  containerName = 'containerName',
 }
 
 type Answers = { [P in ComponentProptNames]: string };
@@ -26,17 +27,21 @@ export const childGenerator: PlopGeneratorConfig = {
       message: 'What should it be called?',
     },
     {
-      type: 'directory',
-      name: ComponentProptNames.path,
-      message: 'Where do you want it to be created?',
-      basePath: `${baseGeneratorPath}`,
-    } as any,
+      type: 'input',
+      name: ComponentProptNames.parent,
+      message: 'What is the parent component?',
+    },
+    {
+      type: 'input',
+      name: ComponentProptNames.containerName,
+      message: 'What is the container of its parent component?',
+    },
   ],
   actions: data => {
     const answers = data as Answers;
 
-    const componentPath = `${baseGeneratorPath}/${answers.path}`;
-    const actualComponentPath = `${baseGeneratorPath}/${answers.path}/${answers.componentName}`;
+    const componentPath = `${baseGeneratorPath}/containers/${answers.containerName}/${answers.parent}`;
+    const actualComponentPath = `${baseGeneratorPath}/containers/${answers.containerName}/${answers.parent}/${answers.componentName}`;
 
     if (pathExists(actualComponentPath)) {
       throw new Error(`Component '${answers.componentName}' already exists`);
@@ -52,7 +57,7 @@ export const childGenerator: PlopGeneratorConfig = {
 
     actions.push({
       type: 'modify',
-      path: `${baseGeneratorPath}/${answers.path}/components.ts`,
+      path: `${componentPath}/components.ts`,
       pattern: new RegExp(/.*\/\/.*\[EXPORT NEW COMPONENT ABOVE\].+\n/),
       templateFile: './child/exportComponent.hbs',
       abortOnFail: true,
