@@ -19,7 +19,7 @@ cd my-app
 yarn
 ```
 
-3. Rename your package.json to my-app.
+3. Rename your package.json > "name" from my-react-boilerplate-ts to my-app.
 
 ## Features
 
