@@ -1,6 +1,6 @@
 // import React from 'react';
 import styled from '@emotion/styled';
-import * as Material from '@mui/material';
+import { TextField } from '@mui/material';
 
 interface Props {
   // children: React.ReactNode;
@@ -11,14 +11,16 @@ export function PasswordInput(props: Props) {
   return (
     <StyledPasswordInput
       name="Password"
+      type="password"
       value={props.p.password}
-      placeholder="Enter your password"
-      label="Password"
-      variant="standard"
+      placeholder="Enter password"
+      variant="outlined"
+      size="small"
+      fullWidth
       onChange={e => props.p.setPassword(e.target.value)}
-      sx={{ mb: 1 }}
+      sx={{ mb: 2 }}
     />
   );
 }
 
-const StyledPasswordInput = styled(Material.TextField)``;
+const StyledPasswordInput = styled(TextField)``;

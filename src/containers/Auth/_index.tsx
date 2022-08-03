@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { LoginForm } from './LoginForm/_index';
 import * as C from './components';
+import { AuthContainer } from './AuthContainer/_index';
+import { LeftPhotoContainer } from './LeftPhotoContainer/_index';
 
 export function Auth() {
   return (
     <C.Container>
-      <LoginForm />
+      <LeftPhotoContainer />
+      <AuthContainer />
     </C.Container>
   );
 }

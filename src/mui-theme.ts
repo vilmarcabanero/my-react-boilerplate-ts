@@ -5,10 +5,11 @@ export function makeTheme(mode: boolean): Theme {
   return createTheme({
     palette: {
       primary: {
-        main: '#2c94fc',
+        main: '#4bb1f0',
         contrastText: '#fff',
       },
-      mode: mode ? 'dark' : 'light',
+      // mode: mode ? 'dark' : 'light',
+      mode: 'dark',
     },
     // status: {
     //   danger: orange[500],

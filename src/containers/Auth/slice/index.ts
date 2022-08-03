@@ -2,9 +2,11 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { authSaga } from '../saga/_index';
-import { AuthState } from './types';
+import { AuthState, initialLoginPayload, LoginPayload } from './types';
 
-export const initialState: AuthState = {};
+export const initialState: AuthState = {
+  loginPayload: initialLoginPayload,
+};
 
 const slice = createSlice({
   name: 'auth',
@@ -12,6 +14,9 @@ const slice = createSlice({
   reducers: {
     someAction(state, action: PayloadAction<any>) {},
     login() {},
+    setLoginPayload(state, action: PayloadAction<LoginPayload>) {
+      state.loginPayload = action.payload;
+    },
     // [INSERT NEW ACTION KEY ABOVE] <
   },
 });
