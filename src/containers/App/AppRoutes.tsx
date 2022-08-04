@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Auth />} />
+      <Route path={process.env.PUBLIC_URL + '/'} element={<Auth />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

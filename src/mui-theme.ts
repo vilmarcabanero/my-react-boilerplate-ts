@@ -8,8 +8,7 @@ export function makeTheme(mode: boolean): Theme {
         main: '#4bb1f0',
         contrastText: '#fff',
       },
-      // mode: mode ? 'dark' : 'light',
-      mode: 'dark',
+      mode: mode ? 'dark' : 'light',
     },
     // status: {
     //   danger: orange[500],

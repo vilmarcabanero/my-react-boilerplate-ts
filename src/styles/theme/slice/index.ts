@@ -17,6 +17,8 @@ const slice = createSlice({
     //   state.selected = action.payload;
     // },
     setDarkMode(state, action: PayloadAction<boolean>) {
+      const toBeStored = JSON.stringify(action.payload);
+      localStorage.setItem('darkMode', toBeStored);
       state.darkMode = action.payload;
     },
   },
