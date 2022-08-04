@@ -23,10 +23,9 @@ export function LoginForm(props: Props) {
   const [email, setEmail] = useState<string>('');
   // const [password, setPassword] = useState<string>('');
 
-  const handleLogin = (e: any) => {
+  function handleLogin(e: any) {
     e.preventDefault();
-    console.log('email', email);
-  };
+  }
 
   const formProps: FormProps = {
     handleLogin,

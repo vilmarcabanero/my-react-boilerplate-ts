@@ -10,7 +10,7 @@ export function FormWrapper(props: Props) {
   const theme = useTheme();
   return (
     <StyledFormWrapper
-      elevation={theme.palette.mode === 'dark' ? 2 : 0}
+      elevation={theme.palette.mode !== 'dark' ? 0 : 2}
       sx={{
         color:
           theme.palette.mode === 'dark'
@@ -35,4 +35,8 @@ const StyledFormWrapper = styled(Paper)`
   border-radius: 3px;
   box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
   box-sizing: border-box;
+
+  @media (max-width: 400px) {
+    padding: 32px 10px;
+  }
 `;
