@@ -3,4 +3,5 @@ export enum ApiCall {
   register = 'register',
   someAction = 'login',
   getUser = 'getUser',
+  // [INPUT NEW API CALL METHOD HERE] <
 }

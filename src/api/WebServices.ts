@@ -1,7 +1,7 @@
 import createApi from '../createApi';
 import { API } from '../config';
 import { ApiCall } from './ApiCall';
-import { Mapping } from './Mapping';
+import { IParams, Mapping } from './types';
 
 const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
   const api = createApi(options);
@@ -20,12 +20,13 @@ const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       method: 'get',
     },
     getUser: {
-      path: '/auth/user',
-      method: 'getNoParam',
+      path: '',
+      method: 'get',
     },
+    // [INPUT NEW MAPPING METHOD HERE] <
   };
 
-  const call = (type: ApiCall, params: any = {}, customPath: string = '') => {
+  const call = (type: ApiCall, params: IParams, customPath: string = '') => {
     const { method, path, headers }: Mapping = mapping[type];
     switch (method) {
       case 'update':
@@ -37,9 +38,8 @@ const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       case 'delete':
         return api.delete(`${path}/${params}`);
       case 'get':
-        return api.get(`${path}/${params}`);
-      case 'getNoParam':
-        return api.get(path);
+        if (!params) return api.get(path);
+        else return api.get(`${path}/${params}`);
       case 'post':
         return api.post(customPath === '' ? path : customPath, params, headers);
       case 'getSearch':
@@ -54,8 +54,6 @@ const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
 
   const setHeader = (key: string, value: string) => {
     api.setHeader(key, value);
-    console.log('key', key);
-    console.log('value', value);
   };
 
   return {
