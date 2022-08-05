@@ -5,7 +5,6 @@ import WebServices from './WebServices';
 export default function createAPIWithHeader() {
   const api = WebServices(API.SERVER.WEBSERVICES.OPTIONS);
   const token = localStorage.getItem('authToken');
-  console.log('token', token);
   api.setHeader('Authorization', `Bearer ${token}`);
   return api;
 }

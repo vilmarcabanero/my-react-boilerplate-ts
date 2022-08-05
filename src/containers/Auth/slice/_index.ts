@@ -2,7 +2,8 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { authSaga } from '../saga/_index';
-import { AuthState, initialLoginPayload, LoginPayload } from './types';
+import { initialLoginPayload } from './payload';
+import { AuthState, LoginPayload } from './types';
 
 export const initialState: AuthState = {
   loginPayload: initialLoginPayload,

@@ -13,6 +13,8 @@ inquirer.registerPrompt('directory', require('inquirer-directory'));
 export enum SliceProptNames {
   functionName = 'functionName',
   parent = 'parent',
+  endpoint = 'endpoint',
+  http = 'http',
 }
 
 type Answers = { [P in SliceProptNames]: string };
@@ -29,18 +31,29 @@ export const functionGeneratorGenerator: PlopGeneratorConfig = {
       type: 'input',
       name: SliceProptNames.functionName,
       message:
-        'What will be the name of the function generator? e.g. (getTasks)',
+        'What will be the name of the saga function generator? (e.g. getTasks)',
     },
     {
       type: 'input',
       name: SliceProptNames.parent,
-      message: 'What container does the slice belong to?',
+      message: 'What container does this saga belong to?',
+    },
+    {
+      type: 'input',
+      name: SliceProptNames.endpoint,
+      message: 'What is the endpoint for the api call? (e.g. /tasks)',
+    },
+    {
+      type: 'input',
+      name: SliceProptNames.http,
+      message: 'What is the method for the api call? (e.g. get)',
     },
   ],
   actions: data => {
     const answers = data as Answers;
 
     const basePath = `${baseGeneratorPath}/containers/${answers.parent}`;
+    const apiPath = `${baseGeneratorPath}/api`;
 
     const actions: Actions = [];
 
@@ -80,10 +93,23 @@ export const functionGeneratorGenerator: PlopGeneratorConfig = {
       templateFile: './functionGenerator/saga.someAction.ts.hbs',
       abortOnFail: true,
     });
-
+    actions.push({
+      type: 'modify',
+      path: `${apiPath}/ApiCall.ts`,
+      pattern: new RegExp(/.*\/\/.*\[INPUT NEW API CALL METHOD HERE\].+\n/),
+      templateFile: './functionGenerator/modifyApiCall.hbs',
+      abortOnFail: true,
+    });
+    actions.push({
+      type: 'modify',
+      path: `${apiPath}/WebServices.ts`,
+      pattern: new RegExp(/.*\/\/.*\[INPUT NEW MAPPING METHOD HERE\].+\n/),
+      templateFile: './functionGenerator/modifyWebServices.hbs',
+      abortOnFail: true,
+    });
     actions.push({
       type: 'prettify',
-      data: { path: `${basePath}/**` },
+      data: { path: `${baseGeneratorPath}/**` },
     });
 
     return actions;
