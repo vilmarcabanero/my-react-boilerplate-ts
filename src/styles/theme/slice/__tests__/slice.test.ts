@@ -1,4 +1,4 @@
-import * as slice from '..';
+import * as slice from '../_index';
 import { ThemeState, ThemeKeyType } from '../types';
 import { RootState } from 'types';
 import { themes } from '../../themes';

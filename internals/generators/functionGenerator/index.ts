@@ -46,6 +46,14 @@ export const functionGeneratorGenerator: PlopGeneratorConfig = {
 
     actions.push({
       type: 'modify',
+      path: `${basePath}/slice/_index.ts`,
+      pattern: new RegExp(/.*\/\/.*\[INSERT NEW ACTION KEY ABOVE\].+\n/),
+      templateFile: './functionGenerator/modifyActionIndex.hbs',
+      abortOnFail: true,
+    });
+
+    actions.push({
+      type: 'modify',
       path: `${basePath}/saga/_index.ts`,
       pattern: new RegExp(/.*\/\/.*\[EXPORT NEW SAGA ABOVE\].+\n/),
       templateFile: './functionGenerator/exportSaga.hbs',
@@ -59,13 +67,13 @@ export const functionGeneratorGenerator: PlopGeneratorConfig = {
       templateFile: './functionGenerator/exportAction.hbs',
       abortOnFail: true,
     });
-    actions.push({
-      type: 'modify',
-      path: `${basePath}/slice/index.ts`,
-      pattern: new RegExp(/.*\/\/.*\[INSERT NEW ACTION KEY ABOVE\].+\n/),
-      templateFile: './functionGenerator/modifyActionIndex.hbs',
-      abortOnFail: true,
-    });
+    // actions.push({
+    //   type: 'modify',
+    //   path: `${basePath}/slice/_index.ts`,
+    //   pattern: new RegExp(/.*\/\/.*\[INSERT NEW ACTION KEY ABOVE\].+\n/),
+    //   templateFile: './functionGenerator/modifyActionIndex.hbs',
+    //   abortOnFail: true,
+    // });
     actions.push({
       type: 'add',
       path: `${basePath}/saga/{{ camelCase functionName }}.ts`,

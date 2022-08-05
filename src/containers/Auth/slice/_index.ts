@@ -12,11 +12,13 @@ const slice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    someAction() {},
     login() {},
     setLoginPayload(state, action: PayloadAction<LoginPayload>) {
       state.loginPayload = action.payload;
     },
+    getUser() {},
+    getUsers() {},
     // [INSERT NEW ACTION KEY ABOVE] <
   },
 });
