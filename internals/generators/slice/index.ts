@@ -89,6 +89,12 @@ export const sliceGenerator: PlopGeneratorConfig = {
       templateFile: './slice/saga.someAction.ts.hbs',
       abortOnFail: true,
     });
+    actions.push({
+      type: 'add',
+      path: `${sagaPath}/actions.ts`,
+      templateFile: './slice/actions.ts.hbs',
+      abortOnFail: true,
+    });
 
     actions.push({
       type: 'prettify',

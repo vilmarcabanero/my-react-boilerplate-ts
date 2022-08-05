@@ -2,14 +2,14 @@ import { ApiCall } from 'api/ApiCall';
 import createAPI from 'api/createAPIWithHeader';
 import { ApiResponse } from 'apisauce';
 import { call } from 'redux-saga/effects';
-import { LoginResponse } from 'types/LoginResponse';
+import { LoginResponse } from '../slice/types';
 //import { authActions as actions } from '../slice';
 
 export function* login() {
   const api = createAPI();
 
   const loginPayload = {
-    email: 'vionacabnero@gmail.com',
+    email: 'vionacabanero@gmail.com',
     password: '124124124',
   };
 
