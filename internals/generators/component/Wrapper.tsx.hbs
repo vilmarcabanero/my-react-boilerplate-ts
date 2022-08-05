@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import * as Material from '@mui/material';
+import { Container as MuiPaper} from '@mui/material';
 
 interface Props {
   children: React.ReactNode;
@@ -15,4 +15,4 @@ export function Wrapper(props: Props) {
 }
 
 
-const StyledWrapper = styled(Paper)``;
+const StyledWrapper = styled(MuiPaper)``;

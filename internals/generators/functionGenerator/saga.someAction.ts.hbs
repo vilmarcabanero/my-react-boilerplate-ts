@@ -1,11 +1,13 @@
-import createAPI from 'api/createAPI';
+import { ApiCall } from 'api/ApiCall';
+import createAPI from 'api/createAPIWithHeader';
+import { ApiResponse } from 'apisauce';
 import { call } from 'redux-saga/effects';
 //import { {{ camelCase parent }}Actions as actions } from '../slice';
 
 export function* {{ camelCase functionName }}() {
-  const api = yield createAPI();
+  const api = createAPI();
 
-  const response = yield call(api.call, '{{ camelCase functionName }}');
+  const response: ApiResponse<any> = yield call(api.call, ApiCall.{{ camelCase functionName }});
   if (response.ok) {
     
   } else {}

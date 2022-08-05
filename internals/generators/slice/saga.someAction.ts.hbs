@@ -1,11 +1,12 @@
 import createAPI from 'api/createAPI';
 import { call } from 'redux-saga/effects';
-//import { {{ camelCase parent }}Actions as actions } from '../slice';
+import { Todo } from 'types/Todo';
+//import { {{ camelCase parent }}Actions as actions } from '../slice/_index';
 
 export function* someAction() {
   const api = yield createAPI();
 
-  const response = yield call(api.call, 'someAction');
+  const response: ApiResponse<Todo> = yield call(api.call, 'someAction', '1');
   if (response.ok) {
     
   } else {}

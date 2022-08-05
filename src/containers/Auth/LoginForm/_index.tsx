@@ -1,6 +1,7 @@
-import React, { FormEventHandler, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { BaseSyntheticEvent, FormEventHandler, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-// import { useAuthSlice } from '../slice';
+// import { useAuthSlice } from '../slice/_index';
 // import { selectAuth } from '../slice/selectors';
 import * as C from './components';
 
@@ -23,7 +24,7 @@ export function LoginForm(props: Props) {
   const [email, setEmail] = useState<string>('');
   // const [password, setPassword] = useState<string>('');
 
-  function handleLogin(e: any) {
+  function handleLogin(e: BaseSyntheticEvent) {
     e.preventDefault();
   }
 

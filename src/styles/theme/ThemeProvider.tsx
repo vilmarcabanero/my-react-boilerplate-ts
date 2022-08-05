@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider as OriginalThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useThemeSlice } from './slice';
+import { useThemeSlice } from './slice/_index';
 import { selectStyledTheme } from './slice/selectors';
 
 export const ThemeProvider = (props: { children: React.ReactChild }) => {

@@ -1,10 +1,12 @@
 import createApi from '../createApi';
 import { API } from '../config';
+import { ApiCall } from './ApiCall';
+import { Mapping } from './Mapping';
 
-const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
-  const api: any = createApi(options);
+const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
+  const api = createApi(options);
 
-  const mapping: any = {
+  const mapping = {
     login: {
       path: '/auth/login',
       method: 'post',
@@ -13,12 +15,21 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       path: '/auth/register',
       method: 'post',
     },
+    someAction: {
+      path: '',
+      method: 'get',
+    },
+    getUser: {
+      path: '/auth/user',
+      method: 'getNoParam',
+    },
   };
-  const call = (type: any, params: any = {}, customPath = null) => {
-    const { method, path, headers } = mapping[type];
+
+  const call = (type: ApiCall, params: any = {}, customPath: string = '') => {
+    const { method, path, headers }: Mapping = mapping[type];
     switch (method) {
       case 'update':
-        return api.update(`${path}/${params.id}`, params.data);
+        return api.put(`${path}/${params.id}`, params.data);
       case 'patch':
         return api.patch(`${path}/${params.id}`, params.data);
       case 'patchNoParam':
@@ -30,11 +41,7 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
       case 'getNoParam':
         return api.get(path);
       case 'post':
-        return api.post(
-          customPath === null ? path : customPath,
-          params,
-          headers,
-        );
+        return api.post(customPath === '' ? path : customPath, params, headers);
       case 'getSearch':
         return api.get(customPath, params, headers);
       case 'put':
@@ -45,8 +52,10 @@ const WebServices = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
     return false;
   };
 
-  const setHeader = (key: any, value: any) => {
+  const setHeader = (key: string, value: string) => {
     api.setHeader(key, value);
+    console.log('key', key);
+    console.log('value', value);
   };
 
   return {

@@ -1,12 +1,18 @@
-import createAPI from 'api/createAPI';
+import createAPI from 'api/createAPIWithHeader';
+import { ApiCall } from 'api/ApiCall';
+import { ApiResponse } from 'apisauce';
 import { call } from 'redux-saga/effects';
+import { Todo } from 'types/Todo';
 //import { authActions as actions } from '../slice';
 
 export function* someAction() {
-  const api = yield createAPI();
+  const api: any = createAPI();
 
-  const response = yield call(api.call, 'someAction');
-
+  const response: ApiResponse<Todo> = yield call(
+    api.call,
+    ApiCall.someAction,
+    '1',
+  );
   if (response.ok) {
   } else {
   }

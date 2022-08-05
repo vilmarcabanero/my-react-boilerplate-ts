@@ -2,9 +2,10 @@ import { API } from '../config';
 
 import WebServices from './WebServices';
 
-export default function* createAPI(): any {
+export default function createAPIWithHeader() {
   const api = WebServices(API.SERVER.WEBSERVICES.OPTIONS);
-  const token = yield localStorage.getItem('authToken');
+  const token = localStorage.getItem('authToken');
+  console.log('token', token);
   api.setHeader('Authorization', `Bearer ${token}`);
   return api;
 }
