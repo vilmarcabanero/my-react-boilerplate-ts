@@ -71,6 +71,13 @@ export const componentGenerator: PlopGeneratorConfig = {
     });
 
     actions.push({
+      type: 'add',
+      path: `${componentPath}/types.d.ts`,
+      templateFile: './component/types.d.ts.hbs',
+      abortOnFail: true,
+    });
+
+    actions.push({
       type: 'prettify',
       data: { path: `${actualComponentPath}/**` },
     });

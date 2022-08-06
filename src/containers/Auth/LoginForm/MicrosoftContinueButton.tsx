@@ -3,11 +3,7 @@ import styled from '@emotion/styled';
 import { Button, useTheme } from '@mui/material';
 import { MICROSOFT_LOGO_URL } from './utils';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function MicrosoftContinueButton(props: Props) {
+export function MicrosoftContinueButton() {
   const theme = useTheme();
   return (
     <StyledMicrosoftContinueButton

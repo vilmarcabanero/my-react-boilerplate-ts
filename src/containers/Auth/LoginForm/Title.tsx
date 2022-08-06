@@ -2,11 +2,7 @@
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function Title(props: Props) {
+export function Title() {
   return (
     <StyledLoginTitle color="primary" sx={{ mb: 2, mt: 1 }}>
       Entropiya

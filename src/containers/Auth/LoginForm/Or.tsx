@@ -2,11 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function Or(props: Props) {
+export function Or() {
   return <StyledOr>OR</StyledOr>;
 }
 

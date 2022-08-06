@@ -1,5 +1,6 @@
 import { ThemeState } from 'styles/theme/slice/types';
 import { AuthState } from 'containers/Auth/slice/types';
+import { AppState } from 'containers/App/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] <
 
 /* 
@@ -11,5 +12,6 @@ import { AuthState } from 'containers/Auth/slice/types';
 export interface RootState {
   theme?: ThemeState;
   auth?: AuthState;
+  app?: AppState;
   // [INSERT NEW REDUCER KEY ABOVE] <
 }
