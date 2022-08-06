@@ -3,11 +3,7 @@ import styled from '@emotion/styled';
 import { Button, useTheme } from '@mui/material';
 import { GOOGLE_LOGO_URL } from './utils';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function GoogleContinueButton(props: Props) {
+export function GoogleContinueButton() {
   const theme = useTheme();
 
   return (

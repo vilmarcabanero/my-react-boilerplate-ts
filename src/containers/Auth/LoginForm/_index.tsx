@@ -1,65 +1,55 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { BaseSyntheticEvent, FormEventHandler, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useAuthSlice } from '../slice/_index';
-// import { selectAuth } from '../slice/selectors';
+import { useDispatch } from 'react-redux';
+import { useAuthSlice } from '../slice/_index';
 import * as C from './components';
+import { Formik, FormikProps, useFormik } from 'formik';
+import { initialLoginPayload } from '../slice/payload';
+import { LoginPayload } from '../slice/types';
+import { validationSchema } from './utils';
 
-interface Props {}
+export function LoginForm() {
+  const actions = useAuthSlice().actions;
+  const dispatch = useDispatch();
 
-export interface FormProps {
-  handleLogin: FormEventHandler<HTMLFormElement>;
-}
+  const formik = useFormik({
+    initialValues: initialLoginPayload,
+    onSubmit: handleLogin,
+    validationSchema: validationSchema,
+  });
 
-export interface EmailInputProps {
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export function LoginForm(props: Props) {
-  // const actions = useAuthSlice().actions;
-  // const dispatch = useDispatch();
-  // const state = useSelector(selectAuth);
-
-  const [email, setEmail] = useState<string>('');
-  // const [password, setPassword] = useState<string>('');
-
-  function handleLogin(e: BaseSyntheticEvent) {
-    e.preventDefault();
+  function handleLogin(loginPayload: LoginPayload) {
+    dispatch(actions.login(loginPayload));
+    formik.resetForm();
   }
 
-  const formProps: FormProps = {
-    handleLogin,
-  };
-
-  const emailInputProps = {
-    email,
-    setEmail,
-  };
-
-  // const passwordInputProps = {
-  //   password,
-  //   setPassword,
-  // };
-
   return (
-    <C.Form p={formProps}>
-      <C.FormWrapper>
-        <C.LoginTitle />
-        <C.Title />
-        <C.EmailInput p={emailInputProps} />
-        {/* {isValidEmailLogin && <C.PasswordInput p={passwordInputProps} />} */}
-        <C.LoginButton />
-        <C.Or />
-        <C.GoogleContinueButton />
-        <C.FacebookContinueButton />
-        <C.MicrosoftContinueButton />
-        <C.LoginFormFooter>
-          <C.ForgotPasswordLabel />
-          <C.Dot />
-          <C.GoToRegisterLabel />
-        </C.LoginFormFooter>
-      </C.FormWrapper>
-    </C.Form>
+    <Formik
+      initialValues={initialLoginPayload}
+      onSubmit={handleLogin}
+      validationSchema={validationSchema}
+    >
+      {(formikProps: FormikProps<LoginPayload>) => (
+        <C.FormWrapper>
+          <C.Form>
+            <C.LoginTitle />
+            <C.Title />
+            <C.EmailInput formik={formikProps} />
+            {!formikProps.dirty ||
+              (!formikProps.errors.email && (
+                <C.PasswordInput formik={formikProps} />
+              ))}
+            <C.LoginButton formik={formikProps} />
+            <C.Or />
+            <C.GoogleContinueButton />
+            <C.FacebookContinueButton />
+            <C.MicrosoftContinueButton />
+            <C.LoginFormFooter>
+              <C.ForgotPasswordLabel />
+              <C.Dot />
+              <C.GoToRegisterLabel />
+            </C.LoginFormFooter>
+          </C.Form>
+        </C.FormWrapper>
+      )}
+    </Formik>
   );
 }

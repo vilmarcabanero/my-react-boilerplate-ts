@@ -24,7 +24,7 @@ export function NotFoundPage() {
           4
         </Title>
         <P>Page not found.</P>
-        <Link to={process.env.PUBLIC_URL + '/'}>
+        <Link to={process.env.PUBLIC_URL + '/auth'}>
           <ReturnToHome>Return to Home Page</ReturnToHome>
         </Link>
       </Wrapper>

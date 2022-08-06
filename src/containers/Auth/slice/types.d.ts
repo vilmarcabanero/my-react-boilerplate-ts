@@ -1,6 +1,12 @@
 /* --- STATE --- */
 export interface AuthState {
   loginPayload: LoginPayload;
+  isAuthLoading: boolean;
+  isEmailValid: boolean;
+  emailError: string;
+  isPasswordValid: boolean;
+  passwordError: string;
+  loginSuccess: boolean;
 }
 export interface LoginPayload {
   email: string;

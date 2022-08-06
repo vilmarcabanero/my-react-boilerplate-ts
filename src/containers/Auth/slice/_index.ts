@@ -7,6 +7,12 @@ import { AuthState, LoginPayload } from './types';
 
 export const initialState: AuthState = {
   loginPayload: initialLoginPayload,
+  isAuthLoading: false,
+  isEmailValid: true,
+  emailError: '',
+  isPasswordValid: true,
+  passwordError: '',
+  loginSuccess: false,
 };
 
 const slice = createSlice({
@@ -14,12 +20,24 @@ const slice = createSlice({
   initialState,
   reducers: {
     someAction() {},
-    login() {},
+    login(_, action: PayloadAction<LoginPayload>) {},
     setLoginPayload(state, action: PayloadAction<LoginPayload>) {
       state.loginPayload = action.payload;
     },
     getUser() {},
     getUsers() {},
+    setIsAuthLoading(state, action: PayloadAction<boolean>) {
+      state.isAuthLoading = action.payload;
+    },
+    setLoginSuccess(state, action: PayloadAction<boolean>) {
+      state.loginSuccess = action.payload;
+    },
+    setEmailError(state, action: PayloadAction<string>) {
+      state.emailError = action.payload;
+    },
+    setPasswordError(state, action: PayloadAction<string>) {
+      state.passwordError = action.payload;
+    },
     // [INSERT NEW ACTION KEY ABOVE] <
   },
 });

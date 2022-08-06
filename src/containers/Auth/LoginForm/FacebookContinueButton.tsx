@@ -3,11 +3,7 @@ import styled from '@emotion/styled';
 import { Button, useTheme } from '@mui/material';
 import src from 'images/facebook_logo.png';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function FacebookContinueButton(props: Props) {
+export function FacebookContinueButton() {
   const theme = useTheme();
   return (
     <StyledFacebookContinueButton

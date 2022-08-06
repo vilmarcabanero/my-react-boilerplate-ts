@@ -2,11 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link, useTheme } from '@mui/material';
 
-interface Props {
-  // children: React.ReactNode;
-}
-
-export function ForgotPasswordLabel(props: Props) {
+export function ForgotPasswordLabel() {
   const theme = useTheme();
   return (
     <StyledForgotPasswordLabel

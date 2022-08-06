@@ -1,18 +1,29 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { FormProps } from './_index';
+import { Form as FormikForm } from 'formik';
 
 interface Props {
   children: React.ReactNode;
-  p: FormProps;
 }
 
-export function Form(props: Props) {
-  return (
-    <StyledLoginForm color="primary" onSubmit={props.p.handleLogin}>
-      {props.children}
-    </StyledLoginForm>
-  );
+export function Form({ children }: Props) {
+  return <StyledLoginForm>{children}</StyledLoginForm>;
 }
 
-const StyledLoginForm = styled.form``;
+const StyledLoginForm = styled(FormikForm)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 400px;
+
+  margin: 0px auto 24px;
+  padding: 32px 40px;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+  box-sizing: border-box;
+
+  @media (max-width: 400px) {
+    padding: 32px 10px;
+  }
+`;
