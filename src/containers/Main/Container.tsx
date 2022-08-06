@@ -7,11 +7,7 @@ interface Props {
 }
 
 export function Container(props: Props) {
-  return (
-    <StyledContainer>
-      {props.children}
-    </StyledContainer>
-  );
+  return <StyledContainer>{props.children}</StyledContainer>;
 }
 
 const StyledContainer = styled(MuiContainer)``;

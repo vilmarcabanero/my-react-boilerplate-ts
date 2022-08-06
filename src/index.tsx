@@ -16,7 +16,7 @@ import FontFaceObserver from 'fontfaceobserver';
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 
-import { App } from 'containers/App/index';
+import { App } from 'containers/App/_index';
 
 import { HelmetProvider } from 'react-helmet-async';
 
