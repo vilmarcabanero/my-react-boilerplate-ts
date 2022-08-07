@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
-import { Field, FormikProps } from 'formik';
+import { FormikProps } from 'formik';
 import { LoginPayload } from '../slice/types';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../slice/selectors';
@@ -16,13 +16,14 @@ export function EmailInput({ formik }: Props) {
     <StyledEmailInput
       name="email"
       type="text"
-      as={TextField}
       placeholder="Enter email"
       variant="outlined"
       size="small"
       autoComplete="off"
       fullWidth
       sx={{ mb: 2 }}
+      value={formik.values.email}
+      onChange={formik.handleChange}
       error={
         (Boolean(formik.errors.email) && Boolean(formik.touched.email)) ||
         !state.isEmailValid ||
@@ -36,4 +37,4 @@ export function EmailInput({ formik }: Props) {
   );
 }
 
-const StyledEmailInput = styled(Field)``;
+const StyledEmailInput = styled(TextField)``;

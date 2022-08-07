@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 import styled from '@emotion/styled';
-import { Form as FormikForm } from 'formik';
 
 interface Props {
   children: React.ReactNode;
+  onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
-export function Form({ children }: Props) {
-  return <StyledLoginForm>{children}</StyledLoginForm>;
+export function Form(props: Props) {
+  return (
+    <StyledLoginForm onSubmit={props.onSubmit}>
+      {props.children}
+    </StyledLoginForm>
+  );
 }
 
-const StyledLoginForm = styled(FormikForm)`
+const StyledLoginForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
