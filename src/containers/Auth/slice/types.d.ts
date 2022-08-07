@@ -7,6 +7,7 @@ export interface AuthState {
   isPasswordValid: boolean;
   passwordError: string;
   loginSuccess: boolean;
+  // [INSERT NEW TYPE ABOVE] <
 }
 export interface LoginPayload {
   email: string;
@@ -35,3 +36,4 @@ export interface User {
   updatedAt: Date;
   __v: number;
 }
+// [CREATE NEW INTERFACE ABOVE] <

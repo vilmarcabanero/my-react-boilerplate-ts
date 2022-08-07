@@ -2,9 +2,13 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { {{ camelCase parent }}Saga } from '../saga/_index';
-import { {{ properCase parent }}State } from './types';
+// import * as U from './utils';
+import * as I from './types';
 
-export const initialState: {{ properCase parent }}State = {};
+export const initialState: Types.{{ properCase parent }}State = {
+  someState: '',
+  // [INSERT NEW STATE ABOVE] <
+};
 
 const slice = createSlice({
   name: '{{ camelCase parent }}',

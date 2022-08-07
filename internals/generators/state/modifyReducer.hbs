@@ -1,0 +1,6 @@
+    set{{ properCase stateName }}(state, action: PayloadAction<{{#if wantInterface}} I.{{ type }} {{else}} {{ type }} {{/if}}>) {
+      state.{{ camelCase stateName }} = action.payload;
+    },
+    // [INSERT NEW ACTION KEY ABOVE] <
+
+      

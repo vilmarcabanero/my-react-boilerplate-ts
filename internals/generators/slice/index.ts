@@ -1,5 +1,5 @@
 /**
- * Container Generator
+ * Slice Generator
  */
 
 import { Actions, PlopGeneratorConfig } from 'node-plop';
@@ -65,8 +65,8 @@ export const sliceGenerator: PlopGeneratorConfig = {
     });
     actions.push({
       type: 'add',
-      path: `${slicePath}/payload.ts`,
-      templateFile: './slice/payload.ts.hbs',
+      path: `${slicePath}/utils.ts`,
+      templateFile: './slice/utils.ts.hbs',
       abortOnFail: true,
     });
     actions.push({

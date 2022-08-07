@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useAuthSlice } from '../slice/_index';
 import * as C from './components';
 import { Formik, FormikProps, useFormik } from 'formik';
-import { initialLoginPayload } from '../slice/payload';
+import { initialLoginPayload } from '../slice/utils';
 import { LoginPayload } from '../slice/types';
 import { validationSchema } from './utils';
 

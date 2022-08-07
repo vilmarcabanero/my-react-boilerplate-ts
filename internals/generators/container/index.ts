@@ -1,5 +1,5 @@
 /**
- * Component Generator
+ * Container Generator
  */
 
 import { Actions, PlopGeneratorConfig } from 'node-plop';

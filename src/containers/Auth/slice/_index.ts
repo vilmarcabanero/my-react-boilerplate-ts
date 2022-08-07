@@ -2,17 +2,18 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { authSaga } from '../saga/_index';
-import { initialLoginPayload } from './payload';
-import { AuthState, LoginPayload } from './types';
+import * as U from './utils';
+import * as I from './types';
 
-export const initialState: AuthState = {
-  loginPayload: initialLoginPayload,
+export const initialState: I.AuthState = {
+  loginPayload: U.initialLoginPayload,
   isAuthLoading: false,
   isEmailValid: true,
   emailError: '',
   isPasswordValid: true,
   passwordError: '',
   loginSuccess: false,
+  // [INSERT NEW STATE ABOVE] <
 };
 
 const slice = createSlice({
@@ -20,8 +21,8 @@ const slice = createSlice({
   initialState,
   reducers: {
     someAction() {},
-    login(_, action: PayloadAction<LoginPayload>) {},
-    setLoginPayload(state, action: PayloadAction<LoginPayload>) {
+    login(_, action: PayloadAction<I.LoginPayload>) {},
+    setLoginPayload(state, action: PayloadAction<I.LoginPayload>) {
       state.loginPayload = action.payload;
     },
     getUser() {},
