@@ -1,7 +1,7 @@
 // import React from 'react';
 import styled from '@emotion/styled';
 import { TextField } from '@mui/material';
-import { FormikProps } from 'formik';
+import { Field, FormikProps } from 'formik';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../slice/selectors';
 import { LoginPayload } from '../slice/types';
@@ -23,9 +23,8 @@ export function PasswordInput({ formik }: Props) {
       size="small"
       autoComplete="off"
       fullWidth
+      as={TextField}
       sx={{ mb: 2 }}
-      value={formik.values.password}
-      onChange={formik.handleChange}
       error={
         (Boolean(formik.errors.password) && Boolean(formik.touched.password)) ||
         !state.isPasswordValid ||
@@ -39,4 +38,4 @@ export function PasswordInput({ formik }: Props) {
   );
 }
 
-const StyledPasswordInput = styled(TextField)``;
+const StyledPasswordInput = styled(Field)``;
