@@ -1,12 +1,16 @@
+import { Paper, useTheme } from '@mui/material';
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Logo } from './Logo';
-import { StyleConstants } from 'styles/StyleConstants';
 import { PageWrapper } from './PageWrapper';
 
 export function NavBar() {
+  const theme = useTheme();
   return (
-    <Wrapper>
+    <Wrapper
+      elevation={theme.palette.mode === 'dark' ? 2 : 0}
+      sx={{ borderRadius: 0 }}
+    >
       <PageWrapper>
         <Logo />
       </PageWrapper>
@@ -14,14 +18,12 @@ export function NavBar() {
   );
 }
 
-const Wrapper = styled.header`
-  box-shadow: 0 1px 0 0 ${p => p.theme.borderLight};
-  height: ${StyleConstants.NAV_BAR_HEIGHT};
+const Wrapper = styled(Paper)`
+  height: 50px;
   display: flex;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: ${p => p.theme.background};
   z-index: 2;
 
   @supports (backdrop-filter: blur(10px)) {

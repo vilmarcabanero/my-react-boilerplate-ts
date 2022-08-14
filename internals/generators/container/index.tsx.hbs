@@ -4,5 +4,13 @@ import * as C from './components'
 interface Props {}
 
 export function {{ properCase componentName }}(props: Props) {
-  return <C.Container>{{ properCase componentName }}</C.Container>;
+  return <C.Container>
+    
+    {{properCase componentName }}
+      <Helmet>
+        <title>{{ properCase componentName }}</title>
+        <meta name="description" content="{{ properCase componentName }}" />
+      </Helmet>
+
+  </C.Container>;
 }

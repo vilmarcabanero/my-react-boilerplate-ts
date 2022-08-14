@@ -7,19 +7,7 @@ const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
   const api = createApi(options);
 
   const mapping = {
-    login: {
-      path: '/auth/login',
-      method: 'post',
-    },
-    register: {
-      path: '/auth/register',
-      method: 'post',
-    },
     someAction: {
-      path: '',
-      method: 'get',
-    },
-    getUser: {
       path: '',
       method: 'get',
     },
@@ -29,8 +17,6 @@ const WebServices: any = (options = API.SERVER.WEBSERVICES.OPTIONS) => {
   const call = (type: ApiCall, params: IParams, customPath: string = '') => {
     const { method, path, headers }: Mapping = mapping[type];
     switch (method) {
-      case 'update':
-        return api.put(`${path}/${params.id}`, params.data);
       case 'patch':
         return api.patch(`${path}/${params.id}`, params.data);
       case 'patchNoParam':

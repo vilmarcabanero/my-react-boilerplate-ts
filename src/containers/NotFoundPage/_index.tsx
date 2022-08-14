@@ -4,8 +4,7 @@ import { P } from './P';
 import { Link } from './Link';
 import { NavBar } from 'components/NavBar';
 import { Helmet } from 'react-helmet-async';
-import { StyleConstants } from 'styles/StyleConstants';
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 
 export function NotFoundPage() {
   return (
@@ -15,7 +14,7 @@ export function NotFoundPage() {
         <meta name="description" content="Page not found" />
       </Helmet>
       <NavBar />
-      <Wrapper>
+      <Wrapper elevation={0}>
         <Title>
           4
           <span role="img" aria-label="Crying Face">
@@ -24,7 +23,7 @@ export function NotFoundPage() {
           4
         </Title>
         <P>Page not found.</P>
-        <Link to={process.env.PUBLIC_URL + '/auth'}>
+        <Link to={process.env.PUBLIC_URL + '/'}>
           <ReturnToHome>Return to Home Page</ReturnToHome>
         </Link>
       </Wrapper>
@@ -32,19 +31,17 @@ export function NotFoundPage() {
   );
 }
 
-const Wrapper = styled.div`
-  height: calc(100vh - ${StyleConstants.NAV_BAR_HEIGHT});
+const Wrapper = styled(Paper)`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 320px;
+  min-height: 100vh;
 `;
 
-const Title = styled.div`
+const Title = styled(Typography)`
   margin-top: -8vh;
   font-weight: bold;
-  color: ${(p: any) => p.theme.palette.text};
   font-size: 3.375rem;
 
   span {
@@ -52,9 +49,4 @@ const Title = styled.div`
   }
 `;
 
-const ReturnToHome = styled(Typography)`
-  color: ${(p: any) => {
-    // console.log('theme.palette', p.theme);
-    return p.theme.palette.primary.main;
-  }};
-`;
+const ReturnToHome = styled(Typography)``;
